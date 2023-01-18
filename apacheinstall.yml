@@ -1,0 +1,19 @@
+---
+- name: installation
+  hosts: servers
+  tasks:
+    - name: httpd install
+      yum: pkg=httpd state=latest
+      become: yes
+    - name: starting  httpd service
+      service: name=httpd state=restarted
+      become: yes
+
+    - name: create a welcome page
+      copy: 
+        content: " Welcome to BH stage " 
+        dest: /var/www/html/index.html
+      become: yes
+        
+
+
